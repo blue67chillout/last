@@ -20,9 +20,14 @@ void main(){
    ManagmentGpio_write(0);
    enableHkSpi(0); // disable housekeeping spi
    //GPIOs_configureAll(GPIO_MODE_MGMT_STD_OUT);
-   GPIOs_configureAll(GPIO_MODE_MGMT_STD_OUTPUT);
+   GPIOs_configureAll(GPIO_MODE_USER_STD_OUTPUT);
+   uint16_t i =0;
+   for(i=24;i<32;i++){
+      GPIOs_configure(i,GPIO_MODE_MGMT_STD_OUTPUT);
+   }
+
    GPIOs_loadConfigs();
-   GPIOs_writeLow(0x8F);
+   GPIOs_writeLow(0x34000000);
    ManagmentGpio_write(1); // configuration finished 
 
    
